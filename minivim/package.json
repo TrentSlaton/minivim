@@ -1,0 +1,74 @@
+{
+    "name": "minivim",
+    "displayName": "MiniVim",
+    "description": "Effective modal editing for VS Code",
+    "license": "MIT",
+    "version": "0.1.0",
+    "publisher": "your-publisher-name",
+    "repository": "https://github.com/your-github-username/vscode-minivim",
+    "engines": {
+        "vscode": "^1.32.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished",
+        "onCommand:type"
+    ],
+    "contributes": {
+        "configuration": {
+            "title": "MiniVim",
+            "properties": {
+                "minivim.command.k": {
+                    "type": "string",
+                    "default": "cursorUp",
+                    "description": "in command mode type i excute command"
+                },
+                "minivim.command.h": {
+                    "type": "string",
+                    "default": "cursorLeft",
+                    "description": "in command mode type j excute command"
+                },
+                "minivim.command.j": {
+                    "type": "string",
+                    "default": "cursorDown",
+                    "description": "in command mode type k excute command"
+                },
+                "minivim.command.l": {
+                    "type": "string",
+                    "default": "cursorRight",
+                    "description": "in command mode type l excute command"
+                }
+            }
+        },
+        "keybindings": [
+            {
+                "key": "escape escape",
+                "command": "extension.minivim.activeCommandMode",
+                "when": "editorTextFocus"
+            },
+            {
+                "key": "i",
+                "command": "extension.minivim.deactiveCommandMode",
+                "when": "editorTextFocus && extension.minivim.commandMode"
+            }
+        ]
+    },
+    "main": "./extension.js",
+    "scripts": {
+        "lint": "eslint .",
+        "pretest": "npm run lint",
+        "test": "node ./test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.84.0",
+        "@types/mocha": "^10.0.3",
+        "@types/node": "18.x",
+        "eslint": "^8.52.0",
+        "glob": "^10.3.10",
+        "mocha": "^10.2.0",
+        "typescript": "^5.2.2",
+        "@vscode/test-electron": "^2.3.6"
+    }
+}
